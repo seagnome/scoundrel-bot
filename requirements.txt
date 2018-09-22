@@ -1,0 +1,2 @@
+.git
+discord==1.0.0a0-py3.7.egg-info
