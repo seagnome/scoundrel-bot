@@ -1,1 +1,1 @@
-worker: python ScoundrelBot.py
+worker: python3 ScoundrelBot.py
