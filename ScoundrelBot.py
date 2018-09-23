@@ -1,9 +1,13 @@
 import discord
 import os
+import json
 import random
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix='$')
+
+with open('config.json') as f:
+    config = json.load(f)
 
 @bot.event
 async def on_ready():
