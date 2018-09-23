@@ -1,4 +1,5 @@
 import discord
+import os
 import random
 from discord.ext import commands
 
@@ -154,4 +155,4 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
 
-bot.run('')
+bot.run(os.environ.get('SCOUNDRELTOKEN')
