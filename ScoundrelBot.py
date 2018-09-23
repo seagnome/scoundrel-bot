@@ -154,5 +154,6 @@ async def help(ctx):
     embed.add_field(name="$help", value="Gives this message", inline=False)
 
     await ctx.send(embed=embed)
-
-bot.run(os.environ.get('SCOUNDRELTOKEN'))
+   
+bot.run(config.get('token'))
+#bot.run(os.environ.get('SCOUNDRELTOKEN'))
