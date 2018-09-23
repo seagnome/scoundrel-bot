@@ -98,9 +98,10 @@ async def mage(ctx, a: int):
     await ctx.send("Tens:{}".format(tc))
 
 @bot.command()
-async def ex(ctx, a: int, dif:int, auto: int, double: int):
+async def ex(ctx, a: int,  auto: str='0', dif:int=7, double: int=10):
     storage = [] #recursive function needed for rerolling (like open rolls in BW)
     sc = 0          # default difficulty is >=7
+    auto = int(auto)
     for i in range(0, a): #default auto is 0
         storage.append(random.randrange(1,11)) #default doubling is 10s
         if storage[i] >=dif:
