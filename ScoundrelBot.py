@@ -12,7 +12,7 @@ async def on_ready():
     print('------')
 
 @bot.command()
-async def hd(ctx, a: int, b: int): #highest dice, for Blades
+async def hd(ctx, a: int=1, b: int=6): #highest dice, for Blades
     highest = -1
     storage = []
     cc = 0
@@ -29,7 +29,7 @@ async def hd(ctx, a: int, b: int): #highest dice, for Blades
         await ctx.send("Highest Result: CRIT")
 
 @bot.command()
-async def ld(ctx, a: int, b: int): #lowest dice, for Blades vice/obligation/0d
+async def ld(ctx, a: int=1, b: int=6): #lowest dice, for Blades vice/obligation/0d
     lowest = b+1
     storage = []
     for i in range(0, a):
@@ -40,31 +40,40 @@ async def ld(ctx, a: int, b: int): #lowest dice, for Blades vice/obligation/0d
     await ctx.send("Lowest Result:{}".format(lowest))
 
 @bot.command()
-async def sd(ctx, a: int, b: int, c:int): #sums #a dice with #b sides each, then adds c
+async def sd(ctx, a: int=1, b: int=20, c:int=0): #sums #a dice with #b sides each, then adds c
     summation = 0
     for i in range(0, a):
         summation+=random.randrange(1,b+1)
     await ctx.send(summation+c)
 
 @bot.command()
-async def rd(ctx, a: int, b:int):
+async def rd(ctx, a: int=1, b:int=6):
     highest = -1
+    lowest = b+1
     storage = []
     cc = 0
-    for i in range(0, a):
-        storage.append(random.randrange(1,b+1))
-        if storage[i] > highest:
-            highest = storage[i]
-        if storage[i] == 6:
-            cc+=1
+    if a<1:
+        for i in range(0,2):
+            storage.append(random.randrange(1,b+1))
+            if storage[i] < lowest:
+                lowest = storage[i]
+    else:
+        for i in range(0, a):
+            storage.append(random.randrange(1,b+1))
+            if storage[i] > highest:
+                highest = storage[i]
+            if storage[i] == 6:
+                cc+=1
     await ctx.send(storage)
-    if cc<2:
+    if a<1:
+        await ctx.send("Stress Taken:{}".format(6-lowest))
+    elif cc<2:
         await ctx.send("Stress Taken:{}".format(6-highest))
     else:
         await ctx.send("Highest Result: CRIT")
 
 @bot.command()
-async def vamp(ctx, a: int, t: int):
+async def vamp(ctx, a: int=1, t: int=6):
     storage = []
     sc = 0
     oc = 0
@@ -80,7 +89,7 @@ async def vamp(ctx, a: int, t: int):
     await ctx.send("Ones:{}".format(oc))
 
 @bot.command()
-async def mage(ctx, a: int):
+async def mage(ctx, a: int=1):
     storage = []
     sc = 0
     tc = 0
@@ -115,7 +124,7 @@ async def ex(ctx, a: int,  auto: str='0', dif:int=7, double: int=10):
 
 @bot.command()
 async def info(ctx):
-    embed = discord.Embed(title="Scoundrel Bot", description="A bot for rolling Dice, particularly for Blades in the Dark/Forged in the Dark", color=0xeee657)
+    embed = discord.Embed(title="Scoundrel Bot", description="A bot for rolling Dice, particularly for Blades in the Dark/Forged in the Dark, Exalted, and WOD", color=0xeee657)
     
     # give info about you here
     embed.add_field(name="Author", value="SeaGnome")
