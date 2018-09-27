@@ -159,5 +159,5 @@ async def help(ctx):
 
     await ctx.send(embed=embed)
    
-bot.run(config.get('token'))
-#bot.run(os.environ.get('SCOUNDRELTOKEN'))
+#bot.run(config.get('token'))
+bot.run(os.environ['SCOUNDRELTOKEN'])
