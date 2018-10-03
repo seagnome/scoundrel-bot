@@ -125,7 +125,13 @@ async def ex(ctx, a: int,  auto: str='0', dif:int=7, double: int=10):
     await ctx.send(storage)
     await ctx.send("Automatic Successes: {}".format(auto))
     await ctx.send("Total Successes: {}".format(sc+auto))
-
+    
+@bot.command()
+async def choose(ctx, a: int,  b: int):
+    factorial = {0:1,1:1, 2:2, 3:6}
+    #(a!)/(b!*(b-a)!)
+    ch = fact(a)/(fact(b)*fact(a-b))
+    await ctx.send(ch)
 
 @bot.command()
 async def info(ctx):
@@ -158,6 +164,15 @@ async def help(ctx):
     embed.add_field(name="$help", value="Gives this message", inline=False)
 
     await ctx.send(embed=embed)
+
+def fact(a):
+    if a in factorial.keys():
+        return factorial[a]
+    else:
+        factorial[a]= a*fact(a-1)
+        return factorial[a]
+    
+    
    
 #bot.run(config.get('token'))
 bot.run(os.environ['SCOUNDRELTOKEN'])
