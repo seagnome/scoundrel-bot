@@ -133,7 +133,7 @@ async def choose(ctx, a: int,  b: int):
     ch = fact(a)/(fact(b)*fact(a-b))
     await ctx.send(ch)
 
-@bot.command(pass_context = TRUE)
+@client.command(pass_context = TRUE)
 async def role(ctx, role: discord.Role, member: discord.Member=None):
     member = member or ctx.message.author
     await client.add_roles(member, role)
