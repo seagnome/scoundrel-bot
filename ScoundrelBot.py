@@ -133,6 +133,11 @@ async def choose(ctx, a: int,  b: int):
     ch = fact(a)/(fact(b)*fact(a-b))
     await ctx.send(ch)
 
+@bot.command(pass_context=True)
+async def addrole(ctx, role: discord.Role, member: discord.Member=None):
+    member = member or ctx.message.author
+    await client.add_roles(member, role)
+
 @bot.command()
 async def info(ctx):
     embed = discord.Embed(title="Scoundrel Bot", description="A bot for rolling Dice, particularly for Blades in the Dark/Forged in the Dark, Exalted, and WOD", color=0xeee657)
