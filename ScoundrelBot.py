@@ -10,6 +10,9 @@ bot = commands.Bot(command_prefix='$')
 with open('config.json') as f:
     config = json.load(f)
 
+    
+client = discord.Client()
+    
 @bot.event
 async def on_ready():
     print('Logged in as')
