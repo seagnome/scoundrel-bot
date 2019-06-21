@@ -141,7 +141,7 @@ async def choose(ctx, a: int,  b: int):
 async def addrole(ctx, role: discord.Role, member: discord.Member=None):
     Member = member or ctx.message.author
     await Member.add_roles(role)
-    await ctx.send("{} Role Added to User".format(role))
+    await ctx.send("{} Gained the {} Role".format(Member, role))
 
 @bot.command()
 async def info(ctx):
