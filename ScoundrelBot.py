@@ -3,6 +3,7 @@ import os
 import json
 import random
 from discord.ext import commands
+from discord.ext.commands import Bot 
 
 bot = commands.Bot(command_prefix='$')
 
@@ -133,8 +134,8 @@ async def choose(ctx, a: int,  b: int):
     ch = fact(a)/(fact(b)*fact(a-b))
     await ctx.send(ch)
 
-@client.command(pass_context = TRUE)
-async def role(ctx, role: discord.Role, member: discord.Member=None):
+@bot.command(pass_context=True)
+async def addrole(ctx, role: discord.Role, member: discord.Member=None):
     member = member or ctx.message.author
     await client.add_roles(member, role)
     await ctx.send("{} Role Added to User".format(role))
