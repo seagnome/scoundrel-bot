@@ -137,6 +137,14 @@ async def choose(ctx, a: int,  b: int):
     ch = fact(a)/(fact(b)*fact(a-b))
     await ctx.send(ch)
 
+@bot.command()
+async def time(ctx, t: str):
+    #2024/05/23 18:30:00
+    pattern = '%d/%m/%Y %H:%M:%S'
+    epoch = int(time.mktime(time.strptime(t, pattern)))
+    f_epoch = "<t:"+str(epoch)+":f>"
+    await ctx.send(f_epoch)
+
 @bot.command(pass_context=True)
 async def addrole(ctx, role: discord.Role, member: discord.Member=None):
     Member = member or ctx.message.author
